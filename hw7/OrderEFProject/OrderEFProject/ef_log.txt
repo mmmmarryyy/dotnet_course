@@ -1,0 +1,36 @@
+Opened connection at 31.03.2025 1:14:27 +03:00
+
+SELECT 
+    [Extent1].[o_id] AS [o_id], 
+    [Extent1].[order_date] AS [order_date]
+    FROM [dbo].[Order] AS [Extent1]
+
+
+-- Executing at 31.03.2025 1:14:27 +03:00
+
+-- Completed in 10 ms with result: SqlDataReader
+
+
+
+Closed connection at 31.03.2025 1:14:27 +03:00
+
+Opened connection at 31.03.2025 1:14:27 +03:00
+
+Started transaction at 31.03.2025 1:14:27 +03:00
+
+DELETE [dbo].[Order]
+WHERE ([o_id] = @0)
+
+
+-- @0: '1' (Type = Int32)
+
+-- Executing at 31.03.2025 1:14:27 +03:00
+
+-- Completed in 13 ms with result: 1
+
+
+
+Committed transaction at 31.03.2025 1:14:27 +03:00
+
+Closed connection at 31.03.2025 1:14:27 +03:00
+

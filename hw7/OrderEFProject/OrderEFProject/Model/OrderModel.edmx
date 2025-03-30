@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище OrderDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="o_id" />
+          </Key>
+          <Property Name="o_id" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="date" />
+        </EntityType>
+        <EntityType Name="orderitem">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="price" Type="money" />
+          <Property Name="total" Type="decimal" Precision="27" Scale="6" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="int" Nullable="false" />
+          <Property Name="p_name" Type="text" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <Association Name="FK_orderitem_order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="o_id" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderitem_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Order_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="o_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Order_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="o_id" Type="int" Mode="In" />
+          <Parameter Name="order_date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Order_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="o_id" Type="int" Mode="In" />
+          <Parameter Name="order_date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="OrderItem_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="order_id" Type="int" Mode="In" />
+          <Parameter Name="product_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="OrderItem_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="order_id" Type="int" Mode="In" />
+          <Parameter Name="product_id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="decimal" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+        </Function>
+        <Function Name="OrderItem_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="order_id" Type="int" Mode="In" />
+          <Parameter Name="product_id" Type="int" Mode="In" />
+          <Parameter Name="amount" Type="decimal" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+        </Function>
+        <Function Name="Product_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Product_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_id" Type="int" Mode="In" />
+          <Parameter Name="p_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+        </Function>
+        <Function Name="Product_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_id" Type="int" Mode="In" />
+          <Parameter Name="p_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище OrderDBModelContainer">
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderitem" EntityType="Self.orderitem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_orderitem_order" Association="Self.FK_orderitem_order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderitem_product" Association="Self.FK_orderitem_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrderDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="o_id" />
+          </Key>
+          <Property Name="o_id" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="orderitem" Relationship="Self.FK_orderitem_order" FromRole="Order" ToRole="orderitem" />
+        </EntityType>
+        <EntityType Name="orderitem">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="total" Type="Decimal" Precision="27" Scale="6" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_orderitem_order" FromRole="orderitem" ToRole="Order" />
+          <NavigationProperty Name="product" Relationship="Self.FK_orderitem_product" FromRole="orderitem" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="p_id" />
+          </Key>
+          <Property Name="p_id" Type="Int32" Nullable="false" />
+          <Property Name="p_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="orderitem" Relationship="Self.FK_orderitem_product" FromRole="product" ToRole="orderitem" />
+        </EntityType>
+        <Association Name="FK_orderitem_order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="o_id" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_orderitem_product">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="p_id" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrderDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="orderitem" EntityType="Self.orderitem" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <AssociationSet Name="FK_orderitem_order" Association="Self.FK_orderitem_order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_orderitem_product" Association="Self.FK_orderitem_product">
+            <End Role="product" EntitySet="product" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <FunctionImport Name="Order_Delete">
+            <Parameter Name="o_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Order_Insert">
+            <Parameter Name="o_id" Mode="In" Type="Int32" />
+            <Parameter Name="order_date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Order_Update">
+            <Parameter Name="o_id" Mode="In" Type="Int32" />
+            <Parameter Name="order_date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItem_Delete">
+            <Parameter Name="order_id" Mode="In" Type="Int32" />
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItem_Insert">
+            <Parameter Name="order_id" Mode="In" Type="Int32" />
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItem_Update">
+            <Parameter Name="order_id" Mode="In" Type="Int32" />
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Delete">
+            <Parameter Name="p_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Insert">
+            <Parameter Name="p_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_name" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="Product_Update">
+            <Parameter Name="p_id" Mode="In" Type="Int32" />
+            <Parameter Name="p_name" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище OrderDBModelContainer" CdmEntityContainer="OrderDBEntities">
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="OrderDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="o_id" ColumnName="o_id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderitem">
+            <EntityTypeMapping TypeName="OrderDBModel.orderitem">
+              <MappingFragment StoreEntitySet="orderitem">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="OrderDBModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="p_id" ColumnName="p_id" />
+                <ScalarProperty Name="p_name" ColumnName="p_name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Order_Delete" FunctionName="Хранилище OrderDBModel.Order_Delete" />
+          <FunctionImportMapping FunctionImportName="Order_Insert" FunctionName="Хранилище OrderDBModel.Order_Insert" />
+          <FunctionImportMapping FunctionImportName="Order_Update" FunctionName="Хранилище OrderDBModel.Order_Update" />
+          <FunctionImportMapping FunctionImportName="OrderItem_Delete" FunctionName="Хранилище OrderDBModel.OrderItem_Delete" />
+          <FunctionImportMapping FunctionImportName="OrderItem_Insert" FunctionName="Хранилище OrderDBModel.OrderItem_Insert" />
+          <FunctionImportMapping FunctionImportName="OrderItem_Update" FunctionName="Хранилище OrderDBModel.OrderItem_Update" />
+          <FunctionImportMapping FunctionImportName="Product_Delete" FunctionName="Хранилище OrderDBModel.Product_Delete" />
+          <FunctionImportMapping FunctionImportName="Product_Insert" FunctionName="Хранилище OrderDBModel.Product_Insert" />
+          <FunctionImportMapping FunctionImportName="Product_Update" FunctionName="Хранилище OrderDBModel.Product_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
