@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\avatar1.png" />
+    <None Remove="Images\avatar2.png" />
+	<None Remove="Images\avatar3.png" />
+	<None Remove="Images\avatar4.png" />
+    <None Remove="Images\img1_1.png" />
+    <None Remove="Images\img1_2.png" />
+    <None Remove="Images\img1_3.png" />
+    <None Remove="Images\img1_4.png" />
+    <None Remove="Images\img2_1.png" />
+    <None Remove="Images\img2_2.png" />
+    <None Remove="Images\img2_3.png" />
+    <None Remove="Images\img2_4.png" />
+    <None Remove="Images\img2_5.png" />
+	<None Remove="Images\img3_1.png" />
+	<None Remove="Images\img3_2.png" />
+	<None Remove="Images\img3_3.png" />
+	<None Remove="Images\img4_1.png" />
+	<None Remove="Images\img4_2.png" />
+	<None Remove="Images\img4_3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\avatar1.png" />
+    <Resource Include="Images\avatar2.png" />
+    <Resource Include="Images\avatar3.png" />
+    <Resource Include="Images\avatar4.png" />
+    <Resource Include="Images\img1_1.png" />
+    <Resource Include="Images\img1_2.png" />
+    <Resource Include="Images\img1_3.png" />
+    <Resource Include="Images\img1_4.png" />
+    <Resource Include="Images\img2_1.png" />
+    <Resource Include="Images\img2_2.png" />
+    <Resource Include="Images\img2_3.png" />
+    <Resource Include="Images\img2_4.png" />
+    <Resource Include="Images\img2_5.png" />
+    <Resource Include="Images\img3_1.png" />
+    <Resource Include="Images\img3_2.png" />
+    <Resource Include="Images\img3_3.png" />
+    <Resource Include="Images\img4_1.png" />
+    <Resource Include="Images\img4_2.png" />
+    <Resource Include="Images\img4_3.png" />
+  </ItemGroup>
+
+</Project>
